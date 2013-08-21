@@ -212,6 +212,11 @@ class Article < Content
     blog.url_for(:controller => "/admin/content", :action =>"destroy", :id => id)
   end
 
+def merge_url  
+   blog.url_for(:controller => "/admin/content", :action =>"merge", :id => id)  
+end  
+
+
   def html_urls
     urls = Array.new
     html.gsub(/<a\s+[^>]*>/) do |tag|
