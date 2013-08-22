@@ -11,29 +11,25 @@ Feature: Article merge
       | second | eric   | Muspi Merol    | u         | 2  |
 		
 	Scenario: User cannot merge articles
-		Given I am logged into the admin panel like gmoral
+	  Given I am logged into the admin panel like gmoral
 	  And I follow "All Articles"
-    And I follow "first"	
-		Then I should not see "Merge"	
+	  And I follow "first"	
+	  Then I should not see "Merge"	
 
 	Scenario: Admin can merge articles
-		Given I am logged into the admin panel
+	  Given I am logged into the admin panel
 	  And I follow "All Articles"
     And I follow "first"	
-		Then I should see "Merge"	
+	  Then I should see "Merge"	
 
 	Scenario: The merged article should contain the text of both previous articles   
 		Given I am logged into the admin panel 
 		And I am on the article "first" page	
 		When I fill in "merge_with" with "2"
-    And I press "Merge"
-		Then I am on the article "first" page
-		And I should see "Lorem Ipsum Muspi Merol"
-		
-	
-
-
-
-
+		And I press "Merge"
+	  Then I should be on the article "first" page
+		And I should see "Articles merged"
+		And I should see "Lorem Ipsum"
+		And I should see "Muspi Merol"
 
 	

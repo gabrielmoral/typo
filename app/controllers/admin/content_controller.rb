@@ -37,6 +37,20 @@ class Admin::ContentController < Admin::BaseController
     new_or_edit
   end
 
+	def merge
+    article = Article.find(params[:id])
+    unless article.merge_with(params[:merge_with])
+      redirect_to :action => 'index'
+      flash[:error] = _("Error, merge with id not found")
+      return
+    end
+
+    debugger
+
+    flash[:notice] = _("Articles merged")
+    redirect_to "/admin/content/edit/#{article.id}"
+	end
+
   def destroy
     @record = Article.find(params[:id])
 

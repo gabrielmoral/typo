@@ -217,6 +217,20 @@ def merge_url
 end  
 
 
+def merge_with(id)
+    duplicated = Article.where(:id => id).first
+
+    if duplicated.nil?
+      return
+    end
+ 
+    self.body_and_extended = self.body_and_extended + duplicated.body_and_extended
+
+    #duplicated.delete
+
+    self.save
+end
+
   def html_urls
     urls = Array.new
     html.gsub(/<a\s+[^>]*>/) do |tag|
