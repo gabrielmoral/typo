@@ -226,14 +226,6 @@ def merge_with(id)
  
     self.body_and_extended = self.body_and_extended + duplicated.body_and_extended
 
-    comments = Comment.where(:article_id => id)
-
-    comments.each do |c|
-	c.article_id = self.id
-	c.save!
-    end
-
-
     #duplicated.delete
 
     self.save
